@@ -1,25 +1,23 @@
-import React from 'react'; 
+import React, { Component } from 'react'; 
 import './App.css';
+import Person from './components/Person';
 
 // React library converts jsx to html
 // JSX
 
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello World</h1>
-      <Person />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <h1>Hello World</h1>
+        <Person />
+      </div>
+    );
+  }
+  // return React.createElement('div', { className: 'App' }, 
+  //   React.createElement('h1', null, 'Hello World'), <Person />);
 }
 
-function Person() {
-  return (
-    <div>
-      <h1>I am a component</h1>
-    </div>
-  );
-}
 
 export default App;
