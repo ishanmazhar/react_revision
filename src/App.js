@@ -7,6 +7,8 @@ import Person from './components/Person';
 class App extends Component {
   render() {
     //JS codes here
+    // let obj = new Component();
+    // console.log(obj);
     return (
       //JSX codes here
       <div className="App">
