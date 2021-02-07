@@ -3,15 +3,18 @@ import './App.css';
 import Person from './components/Person';
 
 // React library converts jsx to html
-// JSX
-
 
 class App extends Component {
   render() {
+    //JS codes here
     return (
+      //JSX codes here
       <div className="App">
         <h1>Hello World</h1>
-        <Person />
+        <Person name="Rahim" age="30">Some Info of Person</Person>
+        <Person name="Karim" age="32"/>
+        <Person name="Jamal" age="33"/>
+        <Person name="Ishan" age="34"/>
       </div>
     );
   }
