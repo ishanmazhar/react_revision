@@ -24,6 +24,16 @@ class App extends Component {
     });
   }
 
+  changeWithInputState = event => {
+    this.setState({
+      books : [
+        { bookname: event.target.value, writer: "George Orwell"},
+        { bookname: "The Da Vinci Code", writer: "Dan Brown"},
+        { bookname: "Metamorphosis", writer: "Franz Kafka"}
+      ]
+    });
+  }
+
   render() {
     console.log(this.state); 
     return (
@@ -32,9 +42,11 @@ class App extends Component {
         {/*this.changeBookState() triggers function when page loaded  / without any event
         //this.changeBookState triggers with event (MUST BE USED)*/}
         <button onClick={() => this.changeBookState("Nineteen Eighty Four")}>Change State</button>
+        <input type="text" onChange={this.changeWithInputState} />
         {/* <SlideShow /> */}
         <Book bookname={this.state.books[0].bookname} 
-          writer={this.state.books[0].writer} />
+          writer={this.state.books[0].writer}
+          inputName={this.changeWithInputState} />
         <Book bookname={this.state.books[1].bookname} 
           writer={this.state.books[1].writer} />
         <Book bookname={this.state.books[2].bookname} 
