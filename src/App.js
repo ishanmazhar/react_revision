@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import './App.css';
 import Book from './components/Book';
-import SlideShow from './components/SlideShow/Slideshow'; 
+// import SlideShow from './components/SlideShow/Slideshow'; 
 
 class App extends Component {
   state = {
@@ -40,8 +40,17 @@ class App extends Component {
       borderRadius: "5px",
       backgroundColor: "black",
       color: "white"
-    }
-    console.log(this.state); 
+    };
+
+    const bookState = this.state.books;
+
+    const books = bookState.map(book => {
+      return (
+        <Book bookname={book.bookname}
+              writer={book.writer} />
+      );
+    });
+    
     return (
       <div className="App">
         <h1 style={style}>Book List</h1>
@@ -50,14 +59,7 @@ class App extends Component {
         <button onClick={() => this.changeBookState("Nineteen Eighty Four")}>Change State</button>
         <input type="text" onChange={this.changeWithInputState} />
         {/* <SlideShow /> */}
-        <Book bookname={this.state.books[0].bookname} 
-          writer={this.state.books[0].writer}
-          inputName={this.changeWithInputState} />
-        <Book bookname={this.state.books[1].bookname} 
-          writer={this.state.books[1].writer} />
-        <Book bookname={this.state.books[2].bookname} 
-          writer={this.state.books[2].writer}
-          change={this.changeBookState.bind(this, "Nineteen 84")} /> 
+        {books}
       </div>
     );
   }
