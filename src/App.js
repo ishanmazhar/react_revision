@@ -13,11 +13,11 @@ class App extends Component {
     otherProp: "I am some other prop"
   }
 
-  changeBookState = () => {
+  changeBookState = (newBookName) => {
     //Wrong: this.state.books[0].bookname = "1974";
     this.setState({
       books : [
-        { bookname: "Nineteen Eighty Four", writer: "George Orwell"},
+        { bookname: newBookName, writer: "George Orwell"},
         { bookname: "The Da Vinci Code", writer: "Dan Brown"},
         { bookname: "Metamorphosis", writer: "Franz Kafka"}
       ]
@@ -31,14 +31,15 @@ class App extends Component {
         <h1>Book List</h1>
         {/*this.changeBookState() triggers function when page loaded  / without any event
         //this.changeBookState triggers with event (MUST BE USED)*/}
-        <button onClick={this.changeBookState}>Change State</button>
+        <button onClick={() => this.changeBookState("Nineteen Eighty Four")}>Change State</button>
         {/* <SlideShow /> */}
         <Book bookname={this.state.books[0].bookname} 
           writer={this.state.books[0].writer} />
         <Book bookname={this.state.books[1].bookname} 
           writer={this.state.books[1].writer} />
         <Book bookname={this.state.books[2].bookname} 
-          writer={this.state.books[2].writer} />
+          writer={this.state.books[2].writer}
+          change={this.changeBookState.bind(this, "Nineteen 84")} /> 
       </div>
     );
   }
