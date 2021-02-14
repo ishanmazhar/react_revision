@@ -6,9 +6,9 @@ import Book from './components/Book';
 class App extends Component {
   state = {
     books : [
-      { bookname: "1984", writer: "George Orwell"},
-      { bookname: "The Da Vinci Code", writer: "Dan Brown"},
-      { bookname: "The Alchemist", writer: "Paulo Coelho"}
+      { id: 1, bookname: "1984", writer: "George Orwell"},
+      { id: 2, bookname: "The Da Vinci Code", writer: "Dan Brown"},
+      { id: 3, bookname: "The Alchemist", writer: "Paulo Coelho"}
     ]
   }
 
@@ -44,7 +44,8 @@ class App extends Component {
 
     const books = bookState.map((book, index) => {
       return (
-        <Book bookname={book.bookname}
+        <Book key={book.id} 
+              bookname={book.bookname}
               writer={book.writer}
               delete={() => this.deleteBookState(index)} />
               // or delete={this.deleteBookState.bind(this, index)} />
