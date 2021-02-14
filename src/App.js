@@ -9,19 +9,7 @@ class App extends Component {
       { bookname: "1984", writer: "George Orwell"},
       { bookname: "The Da Vinci Code", writer: "Dan Brown"},
       { bookname: "The Alchemist", writer: "Paulo Coelho"}
-    ],
-    otherProp: "I am some other prop"
-  }
-
-  changeBookState = (newBookName) => {
-    //Wrong: this.state.books[0].bookname = "1974";
-    this.setState({
-      books : [
-        { bookname: newBookName, writer: "George Orwell"},
-        { bookname: "The Da Vinci Code", writer: "Dan Brown"},
-        { bookname: "Metamorphosis", writer: "Franz Kafka"}
-      ]
-    });
+    ]
   }
 
   changeWithInputState = event => {
@@ -32,7 +20,17 @@ class App extends Component {
         { bookname: "Metamorphosis", writer: "Franz Kafka"}
       ]
     });
-  }
+  };
+
+  deleteBookState = index => {
+    // const books = this.state.books.slice(); //makes a copy of this.state.books array
+    // const books = this.state.books.map(item => item); //makes a copy of this.state.books array
+    const books = [...this.state.books] //makes a copy of this.state.books array
+    books.splice(index, 1); 
+    this.setState({
+      books: books
+    });
+  };
 
   render() {
     const style = {
@@ -44,10 +42,12 @@ class App extends Component {
 
     const bookState = this.state.books;
 
-    const books = bookState.map(book => {
+    const books = bookState.map((book, index) => {
       return (
         <Book bookname={book.bookname}
-              writer={book.writer} />
+              writer={book.writer}
+              delete={() => this.deleteBookState(index)} />
+              // or delete={this.deleteBookState.bind(this, index)} />
       );
     });
     
@@ -56,8 +56,6 @@ class App extends Component {
         <h1 style={style}>Book List</h1>
         {/*this.changeBookState() triggers function when page loaded  / without any event
         //this.changeBookState triggers with event (MUST BE USED)*/}
-        <button onClick={() => this.changeBookState("Nineteen Eighty Four")}>Change State</button>
-        <input type="text" onChange={this.changeWithInputState} />
         {/* <SlideShow /> */}
         {books}
       </div>
