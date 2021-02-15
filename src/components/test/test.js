@@ -7,3 +7,6 @@ console.log('a = ' + a);
 console.log('b = ' + b);
 console.log('c = ' + c); 
 console.log('d = ' + d); 
+
+var e = [...Array(5).keys()];
+console.log(e)
