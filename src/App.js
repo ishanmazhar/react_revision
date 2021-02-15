@@ -48,18 +48,21 @@ class App extends Component {
       color: "white"
     };
 
-    const bookState = this.state.books;
+    let books = null;
+    if(this.state.showBooks) {
+      const bookState = this.state.books;
+      books = bookState.map((book, index) => {
+        return (
+          <Book key={book.id} 
+                bookname={book.bookname}
+                writer={book.writer}
+                delete={() => this.deleteBookState(index)}
+                // or delete={this.deleteBookState.bind(this, index)} />
+                inputName={(event) => this.changeWithInputState(event, index)} />
+        );
+      });
+    }
 
-    const books = bookState.map((book, index) => {
-      return (
-        <Book key={book.id} 
-              bookname={book.bookname}
-              writer={book.writer}
-              delete={() => this.deleteBookState(index)}
-              // or delete={this.deleteBookState.bind(this, index)} />
-              inputName={(event) => this.changeWithInputState(event, index)} />
-      );
-    });
     
     return (
       <div className="App">
@@ -68,7 +71,7 @@ class App extends Component {
         {/*this.changeBookState() triggers function when page loaded  / without any event
         //this.changeBookState triggers with event (MUST BE USED)*/}
         {/* <SlideShow /> */}
-        {this.state.showBooks ? books : null}
+        { books } 
       </div>
     );
   }
